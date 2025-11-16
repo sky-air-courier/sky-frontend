@@ -493,7 +493,7 @@ export default function App() {
                       value={form.phone}
                       onChange={handleFormChange}
                       className="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="+91 8420502278"
                     />
                   </div>
 
