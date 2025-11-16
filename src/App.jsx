@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import {
   Plane,
   Truck,
@@ -11,6 +12,8 @@ import {
   MessageCircle,
 } from 'lucide-react'
 import heroImage from '../assets/heros.png'
+import logoSvg from '../assets/logo.svg'
+import loginLogo from '../assets/logo3.svg'
 
 const navLinks = [
   { href: '#services', label: 'Services' },
@@ -62,19 +65,15 @@ export default function App() {
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Logo */}
-          <a href="#top" className="flex items-center gap-2">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white">
-              <Plane className="h-5 w-5 -rotate-12" />
+          <Link to="/" className="flex items-center gap-3">
+            <span className="inline-flex h-12 items-center sm:h-14">
+              <img
+                src={logoSvg}
+                alt="SkyAir Courier"
+                className="h-full w-auto object-contain transform origin-left scale-[4] sm:scale-[4.5]"
+              />
             </span>
-            <div className="flex flex-col leading-tight">
-              <span className="text-sm font-semibold tracking-[0.2em] text-primary">
-                SKYAIR
-              </span>
-              <span className="text-xs font-medium text-slate-500">
-                COURIER
-              </span>
-            </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden items-center gap-8 md:flex">
@@ -93,12 +92,15 @@ export default function App() {
 
           {/* Right actions */}
           <div className="hidden items-center gap-3 md:flex">
-            <button className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:border-primary hover:text-primary">
+            <Link
+              to="/login"
+              className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:border-primary hover:text-primary"
+            >
               Log in
-            </button>
+            </Link>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-md transition hover:bg-[#FFC933]"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-md transition hover:bg-[#ff9d33]"
             >
               Ship Now
               <Send className="h-4 w-4" />
@@ -129,22 +131,25 @@ export default function App() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#contact"
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-md hover:bg-[#FFC933]"
+              <Link
+                to="/login"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-md hover:bg-[#ff9d33]"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Ship Now
-                <Send className="h-4 w-4" />
-              </a>
+                Log in
+                <MessageCircle className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         )}
       </header>
 
-      {/* Main content */}
-      <main id="top" className="flex-1">
-        {/* Hero Section */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <main id="top" className="flex-1">
+              {/* Hero Section */}
         <section
           id="tracking"
           className="relative overflow-hidden bg-slate-900 text-white"
@@ -161,7 +166,7 @@ export default function App() {
 
           <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:py-24 lg:px-8">
             <div className="w-full space-y-6 lg:w-1/2">
-              <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-sky-100 ring-1 ring-white/15">
+              <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-secondary ring-1 ring-white/15">
                 Fast • Secure • Global
               </p>
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -224,7 +229,7 @@ export default function App() {
                     />
                     <button
                       type="submit"
-                      className="inline-flex flex-none items-center justify-center rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-sm transition hover:bg-[#FFC933]"
+                      className="inline-flex flex-none items-center justify-center rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-sm transition hover:bg-[#ff9d33]"
                     >
                       Track
                     </button>
@@ -239,7 +244,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Services Section */}
+              {/* Services Section */}
         <section
           id="services"
           className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16"
@@ -276,7 +281,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* About Section */}
+              {/* About Section */}
         <section
           id="about"
           className="bg-white/80 border-y border-slate-100"
@@ -310,7 +315,7 @@ export default function App() {
               </div>
 
               <div className="rounded-3xl border border-slate-100 bg-slate-900/95 p-6 text-slate-50 shadow-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
                   Control Tower
                 </p>
                 <p className="mt-2 text-lg font-semibold">
@@ -341,7 +346,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
+              {/* Testimonials Section */}
         <section
           id="testimonials"
           className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16"
@@ -381,7 +386,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Contact Section */}
+              {/* Contact Section */}
         <section
           id="contact"
           className="border-t border-slate-100 bg-slate-900 text-slate-50"
@@ -389,7 +394,7 @@ export default function App() {
           <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
             <div className="grid gap-10 lg:grid-cols-[0.9fr,1.1fr] lg:items-start">
               <div>
-                <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-sky-200">
+                <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-secondary">
                   Contact Us
                 </h2>
                 <p className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
@@ -523,7 +528,7 @@ export default function App() {
                     </p>
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-md transition hover:bg-[#FFC933]"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-md transition hover:bg-[#ff9d33]"
                     >
                       Submit
                       <Send className="h-4 w-4" />
@@ -534,7 +539,11 @@ export default function App() {
             </div>
           </div>
         </section>
-      </main>
+            </main>
+          }
+        />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
 
       {/* Footer */}
       <footer className="border-t border-slate-800 bg-slate-950 py-6 text-xs text-slate-400">
@@ -558,7 +567,7 @@ export default function App() {
         href="https://wa.me/918420502278?text=Hi%20SkyAir%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-slate-900/30 transition hover:translate-y-[-2px] hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1ebe5d]"
+        className="fixed bottom-6 right-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-slate-900/30 transition hover:translate-y-[-2px] hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
         aria-label="Chat with us on WhatsApp"
       >
         <MessageCircle className="h-7 w-7" />
@@ -606,6 +615,85 @@ function Stat({ label, value }) {
     <div>
       <p className="text-sm font-semibold text-slate-900">{value}</p>
       <p className="mt-1 text-xs text-slate-500">{label}</p>
+    </div>
+  )
+}
+
+function LoginPage() {
+  const navigate = useNavigate()
+
+  return (
+    <div className="flex min-h-[calc(100vh-96px)] items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4 py-16">
+      <div className="w-full max-w-md space-y-6 rounded-3xl bg-white/95 p-8 text-slate-900 shadow-2xl shadow-slate-900/40">
+        <div className="text-center">
+          <div className="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center">
+            <img
+              src={loginLogo}
+              alt="SkyAir Courier"
+              className="h-[220%] w-[220%] max-w-none object-contain"
+            />
+          </div>
+          <h1 className="text-2xl font-semibold">Welcome back to SkyAir Courier</h1>
+          <p className="mt-2 text-sm text-slate-600">
+            Sign in to manage your shipments, track deliveries, and access your personalized dashboard.
+          </p>
+        </div>
+
+        <form className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="email" className="text-xs font-semibold uppercase tracking-wide text-slate-600">
+              Email address
+            </label>
+            <input
+              id="email"
+              type="email"
+              required
+              placeholder="you@company.com"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-600">
+              <label htmlFor="password">Password</label>
+              <button
+                type="button"
+                className="text-[11px] font-semibold uppercase tracking-wide text-primary hover:text-primary/80"
+              >
+                Forgot?
+              </button>
+            </div>
+            <input
+              id="password"
+              type="password"
+              required
+              placeholder="Enter your password"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-md transition hover:bg-[#ff9d33]"
+          >
+            Log in
+          </button>
+        </form>
+
+        <div className="space-y-3 text-center text-xs text-slate-500">
+          <p>
+            Don&apos;t have an account?{' '}
+            <button
+              type="button"
+              className="font-semibold text-primary hover:text-primary/80"
+              onClick={() => navigate('/')}
+            >
+              Contact sales
+            </button>
+          </p>
+          <p>By logging in, you agree to our privacy policy and terms of service.</p>
+        </div>
+      </div>
     </div>
   )
 }
