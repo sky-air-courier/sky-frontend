@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import heroImage from '../assets/heros.png'
 import logoSvg from '../assets/logo.svg'
+import loginLogo from '../assets/logo3.svg'
 
 const navLinks = [
   { href: '#services', label: 'Services' },
@@ -625,8 +626,12 @@ function LoginPage() {
     <div className="flex min-h-[calc(100vh-96px)] items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4 py-16">
       <div className="w-full max-w-md space-y-6 rounded-3xl bg-white/95 p-8 text-slate-900 shadow-2xl shadow-slate-900/40">
         <div className="text-center">
-          <div className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white">
-            <Plane className="h-6 w-6 -rotate-12" />
+          <div className="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center">
+            <img
+              src={loginLogo}
+              alt="SkyAir Courier"
+              className="h-[220%] w-[220%] max-w-none object-contain"
+            />
           </div>
           <h1 className="text-2xl font-semibold">Welcome back to SkyAir Courier</h1>
           <p className="mt-2 text-sm text-slate-600">
